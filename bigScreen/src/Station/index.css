@@ -1,0 +1,27 @@
+.stationContainer {
+  position: relative;
+  width: 100%;
+  height: calc(100vh - 120px);
+}
+
+.station {
+  background-image: url("../../public/solidStation.jpeg");
+  background-size: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100%;
+  width: 100%;
+}
+
+.ant-table-tbody > tr > td {
+    background-color: #fafce5;
+}
+
+
+/* .stationTable {
+  visibility: hidden;
+}
+
+.stationTable :hover {
+  visibility: visible;
+} */

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <title>动态参数接口请求</title>
+</head>
+
+<body>
+
+  <div>
+    <label for="filterInput">筛选条件：</label>
+    <input type="text" id="filterInput" placeholder="输入筛选值...">
+  </div>
+
+  <div id="dataContainer">
+    等待数据加载...
+  </div>
+
+  <script>
+    // 1. 定义一个变量来存储筛选项的值
+    let currentFilterValue = ''; // 初始筛选值可以为空或默认值
+
+    // API 的基础 URL
+    const API_BASE_URL = 'https://api.example.com/data'; // 请替换为你的实际API端点
+
+    // 获取页面元素
+    const filterInputElement = document.getElementById('filterInput');
+    const dataContainer = document.getElementById('dataContainer');
+
+    // 2. 监听筛选项变化
+    filterInputElement.addEventListener('input', function (event) {
+      currentFilterValue = event.target.value;
+      console.log(`筛选项已变为: ${currentFilterValue}`);
+      // 注意：这里筛选值变化后，不会立即触发请求，而是等待下一次定时器触发时使用新的值。
+      // 如果需要在筛选值变化后立即请求一次（而不是等待定时器），可以在这里调用 fetchData()。
+      // 但题目要求是“接口参数跟着变”，并在每分钟请求的接口中使用，所以我们主要更新变量。
+    });
+
+    // 3. 定时请求函数
+    async function fetchData() {
+      // 构造带有最新筛选参数的 URL
+      const apiUrlWithParams = `${API_BASE_URL}?filter=${encodeURIComponent(currentFilterValue)}`;
+      // 如果有其他固定参数，也可以一起添加，例如：
+      // const apiUrlWithParams = `${API_BASE_URL}?filter=${encodeURIComponent(currentFilterValue)}&apiKey=YOUR_API_KEY`;
+
+      console.log(`准备请求接口: ${apiUrlWithParams}`);
+      dataContainer.textContent = `正在从 ${apiUrlWithParams} 加载数据... (当前筛选值: ${currentFilterValue})`;
+
+      try {
+        const response = await fetch(apiUrlWithParams);
+        if (!response.ok) {
+          throw new Error(`HTTP 错误! 状态: ${response.status}`);
+        }
+        const data = await response.json(); // 假设接口返回JSON格式数据
+
+        // 处理并显示数据
+        console.log('接口返回数据:', data);
+        dataContainer.textContent = `数据加载成功 (筛选值: ${currentFilterValue}): ${JSON.stringify(data, null, 2)}`;
+        // 这里你可以根据实际返回的数据结构来更新页面的其他部分
+      } catch (error) {
+        console.error('请求接口失败:', error);
+        dataContainer.textContent = `数据加载失败: ${error.message}`;
+      }
+    }
+
+    // 4. 页面加载后立即执行一次请求 (可选，但通常需要)
+    fetchData();
+
+    // 5. 设置定时器，每分钟 (60000 毫秒) 调用一次 fetchData 函数
+    const intervalId = setInterval(fetchData, 60000);
+
+    // (可选) 如果页面或组件销毁时，需要清除定时器以防止内存泄漏
+    // window.addEventListener('beforeunload', () => {
+    //     clearInterval(intervalId);
+    // });
+
+  </script>
+</body>
+
+</html>

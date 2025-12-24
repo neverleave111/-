@@ -1,0 +1,25 @@
+/* WarningLight.css */
+
+.warning-light {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%; /* 圆形 */
+  background-color: gray; /* 默认颜色 */
+}
+
+/* 不同状态的颜色 */
+.warning-light.success {
+  background-color: green;
+}
+
+.warning-light.warning {
+  background-color: yellow;
+}
+
+.warning-light.alert {
+  background-color: red;
+}
+
+.warning-light.divide {
+  background-color: purple;
+}

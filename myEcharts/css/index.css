@@ -1,0 +1,493 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+li {
+  list-style: none;
+}
+/* 声明字体*/
+@font-face {
+  font-family: electronicFont;
+  src: url(../font/DS-DIGIT.TTF);
+}
+body {
+  background: url(../images/bg.jpg) no-repeat top center;
+  background-size: 120% 130%;
+  line-height: 1.15;
+}
+header {
+  position: relative;
+  height: 1.25rem;
+  background: url(../images/head_bg.png) no-repeat;
+  background-size: 100% 100%;
+}
+header h1 {
+  font-size: 0.475rem;
+  color: #fff;
+  text-align: center;
+  line-height: 1rem;
+}
+header .showTime {
+  position: absolute;
+  right: 0.375rem;
+  top: 0;
+  line-height: 0.9375rem;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.25rem;
+}
+.mainbox {
+  display: flex;
+  margin: 0 auto;
+  padding: 0.125rem 0.125rem 0;
+}
+.mainbox .column {
+  flex: 3;
+}
+.mainbox .column:nth-child(2) {
+  flex: 5;
+  margin: 0 0.125rem 0.1875rem;
+  overflow: hidden;
+}
+.mainbox .panel {
+  position: relative;
+  height: 3.875rem;
+  top:40px;
+  margin-top: 20px;
+  padding: 0 0.1875rem 0.5rem; 
+  border: 1px solid rgba(25, 186, 139, 0.17);
+  margin-bottom: 0.1875rem;
+  background: url(../images/line\(1\).png) rgba(255, 255, 255, 0.03);
+}
+
+.bar {
+  overflow: auto;  
+}
+.mainbox .panel::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 10px;
+  height: 10px;
+  border-left: 2px solid #02a6b5;
+  border-top: 2px solid #02a6b5;
+  content: "";
+}
+.mainbox .panel::after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 10px;
+  height: 10px;
+  border-right: 2px solid #02a6b5;
+  border-top: 2px solid #02a6b5;
+  content: "";
+}
+.mainbox .panel .panel-footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+.mainbox .panel .panel-footer::before {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 10px;
+  height: 10px;
+  border-left: 2px solid #02a6b5;
+  border-bottom: 2px solid #02a6b5;
+  content: "";
+}
+.mainbox .panel .panel-footer::after {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 10px;
+  height: 10px;
+  border-right: 2px solid #02a6b5;
+  border-bottom: 2px solid #02a6b5;
+  content: "";
+}
+.mainbox .panel h2 {
+  height: 0.6rem;
+  color: #fff;
+  line-height: 0.6rem;
+  text-align: center;
+  font-size: 0.25rem;
+  font-weight: 400;
+}
+.mainbox .panel h2 a {
+  color: #fff;
+  text-decoration: none;
+  margin: 0 0.125rem;
+}
+.mainbox .panel .chart {
+  height: 3rem;
+}
+
+.no {
+  background: rgba(101, 132, 226, 0.1);
+  padding: 0.1875rem;
+}
+.no .no-hd {
+  position: relative;
+  border: 1px solid rgba(25, 186, 139, 0.17);
+}
+.no .no-hd::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: "";
+  width: 30px;
+  height: 10px;
+  border-top: 2px solid #02a6b5;
+  border-left: 2px solid #02a6b5;
+}
+.no .no-hd::after {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  content: "";
+  width: 30px;
+  height: 10px;
+  border-right: 2px solid #02a6b5;
+  border-bottom: 2px solid #02a6b5;
+}
+.no .no-hd ul {
+  display: flex;
+}
+.no .no-hd ul li {
+  position: relative;
+  flex: 1;
+  line-height: 1rem;
+  font-size: 0.875rem;
+  color: #ffeb7b;
+  text-align: center;
+  font-family: "electronicFont";
+}
+.no .no-hd ul li::after {
+  content: "";
+  position: absolute;
+  top: 25%;
+  right: 0;
+  height: 50%;
+  width: 1px;
+  background: rgba(255, 255, 255, 0.2);
+}
+.no .no-bd ul {
+  display: flex;
+}
+.no .no-bd ul li {
+  flex: 1;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.225rem;
+  height: 0.5rem;
+  line-height: 0.5rem;
+  padding-top: 0.125rem;
+}
+.map {
+  overflow: visible;
+  position: relative;
+  height: 10.125rem;
+  margin-left: 0px;
+}
+.map .map1 {
+  width: 6.475rem;
+  height: 6.475rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: url(../images/map.png);
+  background-size: 100% 100%;
+  opacity: 0.3;
+}
+.map .map2 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 8.0375rem;
+  height: 8.0375rem;
+  background: url(../images/lbx.png);
+  animation: rotate1 15s linear infinite;
+  opacity: 0.6;
+  background-size: 100% 100%;
+}
+.map .map3 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 7.075rem;
+  height: 7.075rem;
+  background: url(../images/jt.png);
+  animation: rotate2 10s linear infinite;
+  opacity: 0.6;
+  background-size: 100% 100%;
+}
+.map .chart {
+  overflow: visible;
+  position: absolute;
+  left: 20%;
+  top: -20%;
+  width: 100%;
+  height: 810px;
+}
+@keyframes rotate1 {
+  form {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+@keyframes rotate2 {
+  form {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(-360deg);
+  }
+}
+/* ========== 待办三项 — 光圈效果样式（将此段追加/替换到 css/index.css） ========== */
+
+/* 容器固定到中下方 */
+.todo-top-panel {
+  position: absolute !important;
+  top: 800px !important; 
+  left: 50% !important;
+  bottom: 48px !important;
+  transform: translateX(-50%) !important;
+  z-index: 99999 !important;
+  display: flex !important;
+  gap: 28px !important;
+  align-items: flex-end !important;
+  padding: 10px 16px !important;
+  background: rgba(1, 10, 20, 0.28) !important;
+  border-radius: 14px !important;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.55) !important;
+  backdrop-filter: blur(6px) !important;
+  pointer-events: auto !important;
+  overflow: visible !important;
+  isolation: isolate;
+}
+
+/* 单张卡片 */
+.todo-card {
+  position: relative;
+  width: 160px;
+  height: 150px;
+  padding: 6px 8px 20px;
+  text-align: center;
+  border-radius: 8px;
+  background: linear-gradient(180deg, rgba(2,29,50,0.08), rgba(1,10,20,0.02));
+  cursor: pointer;
+  user-select: none;
+  transition: transform .22s cubic-bezier(.2,.9,.3,1), box-shadow .18s ease;
+  overflow: visible;
+}
+
+/* 上移效果 */
+.todo-card:hover { transform: translateY(-8px); }
+
+/* 数字（置顶显示并带阴影） */
+.todo-card .count {
+  position: absolute;
+  top: 10px;               /* 数字在卡片上方一点 */
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 40;
+  font-size: 36px;
+  font-weight: 800;
+  color: #ffffff;
+  text-shadow:
+    0 2px 0 rgba(0,0,0,0.25),
+    0 10px 30px rgba(0,120,200,0.25);
+  pointer-events: none;
+  line-height: 1;
+}
+
+/* icon 区域，作为光柱容器 */
+.icon-wrap {
+  position: relative;
+  width: 100%;
+  height: 92px; /* 高度决定光柱高度 */
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  margin-top: 6px;
+  overflow: visible;
+}
+
+/* 小图标（放在光柱上端） */
+.icon-img {
+  width: 44px;
+  height: 44px;
+  object-fit: contain;
+  z-index: 30;
+  position: relative;
+  filter: drop-shadow(0 8px 18px rgba(0,120,220,0.12));
+}
+
+/* 光柱 - 主体（模糊径向渐变）*/
+.icon-wrap .beam {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 0;
+  width: 82%;
+  height: 64px;
+  border-radius: 50% / 24px;
+  background: radial-gradient(closest-side, rgba(0,220,255,0.20) 0%, rgba(0,140,200,0.10) 28%, rgba(0,60,80,0.02) 55%, transparent 70%);
+  filter: blur(10px) saturate(1.1);
+  z-index: 6;
+  pointer-events: none;
+}
+
+/* 光柱 - 内层高光（细竖纹状反射）*/
+.icon-wrap .beam-highlight {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -6px;
+  width: 62%;
+  height: 54px;
+  border-radius: 50% / 20px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.00));
+  filter: blur(4px);
+  z-index: 8;
+  pointer-events: none;
+  mix-blend-mode: screen;
+}
+
+/* 细微的顶部反光和锥形投影（用伪元素）*/
+.icon-wrap::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%) translateY(-6px);
+  top: 6px;
+  width: 86%;
+  height: 38%;
+  border-radius: 50% / 50%;
+  background: radial-gradient(ellipse at center, rgba(255,255,255,0.03), transparent 60%);
+  z-index: 20;
+  pointer-events: none;
+}
+
+/* 光柱脉冲动画（使光稍微呼吸）*/
+@keyframes beamPulse {
+  0%   { transform: translateX(-50%) scaleX(1) scaleY(1); opacity: 0.95; filter: blur(10px) saturate(1.05); }
+  50%  { transform: translateX(-50%) scaleX(1.05) scaleY(1.02); opacity: 1; filter: blur(12px) saturate(1.15); }
+  100% { transform: translateX(-50%) scaleX(1) scaleY(1); opacity: 0.95; filter: blur(10px) saturate(1.05); }
+}
+.icon-wrap .beam { animation: beamPulse 2200ms ease-in-out infinite; }
+
+/* label 文本 */
+.todo-card .label {
+  margin-top: 8px;
+  font-size: 13px;
+  color: #a7e1ff;
+  opacity: 0.95;
+  z-index: 22;
+}
+/* 维修预警表格样式 */
+.maintenance-warning {
+  margin-top: 10rem;
+  width: 40%;
+}
+
+.full-width {
+  flex: 12 !important; /* 让表格占满整个宽度 */
+  margin: 0 0.125rem 0.1875rem;
+}
+
+#maintenanceWarningTable {
+  width: 100%;
+  border-collapse: collapse;
+  color: #fff;
+}
+
+#maintenanceWarningTable th,
+#maintenanceWarningTable td {
+  padding: 0.15rem;
+  text-align: left;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 0.175rem;
+}
+
+#maintenanceWarningTable th {
+  background-color: rgba(2, 166, 181, 0.1);
+  font-weight: 500;
+}
+
+#maintenanceWarningTable tr {
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+#maintenanceWarningTable tr:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+/* 处理状态样式 */
+.status-pending {
+  color: #ffeb7b;
+}
+
+.status-processing {
+  color: #00b42a;
+}
+
+.status-overdue {
+  color: #f53f3f;
+}
+/* 小屏设备适配 */
+@media (max-width: 720px) {
+  .todo-top-panel { bottom: 18px !important; padding: 8px; gap: 12px; width: calc(100% - 24px); flex-wrap: wrap; justify-content: center; }
+  .todo-card { width: calc(33.333% - 16px); min-width: 120px; }
+  .todo-card .count { font-size: 28px; top: -14px; }
+  .icon-wrap { height: 72px; }
+  .icon-img { width: 36px; height: 36px; }
+  .icon-wrap .beam { height: 48px; }
+}
+
+
+
+/* 约束屏幕尺寸 */
+@media screen and (max-width: 1024px) {
+  html {
+    font-size: 42px !important;
+  }
+}
+@media screen and (min-width: 1920px) {
+  html {
+    font-size: 80px !important;
+  }
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  color: #fff;
+}
+
+th,
+td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  font-size: 0.225rem;
+  white-space: nowrap;
+  position: sticky; 
+}
+
+tr {
+  font-size: 0.175rem;
+}

@@ -1,0 +1,17 @@
+body {
+  margin: 0;
+  font-family: "WenQuanYi Micro Hei", "WenQuanYi Zen Hei", "Microsoft YaHei", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+[class^="ant-"],
+[class*=" ant-"] { /* 处理包含空格分隔的类名（如 <div class="other-class ant-btn">） */
+  font-family: inherit !important; /* 继承全局字体 */
+}
+
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}

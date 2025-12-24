@@ -1,0 +1,22 @@
+.stationContainer {
+  position: relative;
+  width: 100%;
+  height: calc(100vh - 120px);
+}
+
+.station {
+  background-image: url("../../public/solidStation.jpeg");
+  background-size: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100%;
+  width: 100%;
+}
+
+/* .stationTable {
+  display: none;
+}
+
+.stationTable :hover {
+  display: block;
+} */

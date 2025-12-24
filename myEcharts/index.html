@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>数据可视化</title>
+  <link rel="stylesheet" href="css/index.css" />
+  <style>
+    body {
+      /* 指定中文字体及备用字体 */
+      font-family: "WenQuanYi Micro Hei", "WenQuanYi Zen Hei", "Microsoft YaHei", sans-serif;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 头部的盒子 -->
+  <header>
+    <h1>站台门智能运维系统</h1>
+    <div class="showTime"></div>
+    <!-- 替换或插入此块到 header 内（紧贴 .showTime 后） -->
+    <div class="todo-top-panel" aria-label="待办事项">
+      <div class="todo-card" id="todo-maintenance" title="点击查看维保" role="button" tabindex="0">
+        <div class="count" id="todo-maintenance-count">--</div>
+
+        <div class="icon-wrap">
+          <img class="icon-img" src="images/maintenance.png" alt="维保"> <!-- 固定图表文件 -->
+          <div class="beam"></div>
+          <div class="beam-highlight"></div>
+        </div>
+
+        <div class="label">维保</div>
+      </div>
+
+      <div class="todo-card" id="todo-inspection" title="点击查看巡检" role="button" tabindex="0">
+        <div class="count" id="todo-inspection-count">--</div>
+
+        <div class="icon-wrap">
+          <img class="icon-img" src="images/inspection.png" alt="巡检">
+          <div class="beam"></div>
+          <div class="beam-highlight"></div>
+        </div>
+
+        <div class="label">巡检</div>
+      </div>
+
+      <div class="todo-card" id="todo-annual" title="点击查看年检" role="button" tabindex="0">
+        <div class="count" id="todo-annual-count">--</div>
+
+        <div class="icon-wrap">
+          <img class="icon-img" src="images/annual.png" alt="年检">
+          <div class="beam"></div>
+          <div class="beam-highlight"></div>
+        </div>
+
+        <div class="label">年检</div>
+      </div>
+    </div>
+    <!-- 在mainbox结束后添加 -->
+    <div class="mainbox maintenance-warning">
+      <div class="column full-width">
+        <div class="panel bar">
+          <h2>维修预警Top10</h2>
+          <table id="maintenanceWarningTable">
+            <thead>
+              <tr>
+                <th>序号</th>
+                <th>车站</th>
+                <th>上下行</th>
+                <th>设备编号</th>
+                <th>故障内容</th>
+                <th>日期</th>
+                <th>处理状态</th>
+              </tr>
+            </thead>
+            <tbody id="maintenanceWarningTableBody">
+              <!-- 数据将通过JS动态加载 -->
+            </tbody>
+          </table>
+          <div class="panel-footer"></div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      var t = null;
+      t = setTimeout(time, 1000); //開始运行
+      function time() {
+        clearTimeout(t); //清除定时器
+        dt = new Date();
+        var y = dt.getFullYear();
+        var mt = dt.getMonth() + 1;
+        var day = dt.getDate();
+        var h = dt.getHours(); //获取时
+        var m = dt.getMinutes(); //获取分
+        var s = dt.getSeconds(); //获取秒
+        document.querySelector(".showTime").innerHTML =
+          "当前时间：" +
+          y +
+          "年" +
+          mt +
+          "月" +
+          day +
+          "-" +
+          h +
+          "时" +
+          m +
+          "分" +
+          s +
+          "秒";
+        t = setTimeout(time, 1000); //设定定时器，循环运行
+      }
+    </script>
+  </header>
+
+  <!-- 页面主体部分 -->
+  <section class="mainbox">
+    <div class="column">
+      <div class="panel bar">
+        <h2>实时故障告警表 (当月全线路)</h2>
+        <table>
+          <thead id="alarmTableHead">
+            <tr>
+              <th>序号</th>
+              <th>车站</th>
+              <th>上下行</th>
+              <th>设备编号</th>
+              <th>故障内容</th>
+              <th>日期</th>
+            </tr>
+          </thead>
+          <tbody id="alarmTable">
+          </tbody>
+        </table>
+        <div class="panel-footer"></div>
+      </div>
+      <div class="panel barAlarm">
+        <h2>实时故障统计柱状图 <a href="javacript:;" style="color: rgb(233, 179, 1);">当月</a><a href="javascript:;"
+            style="color: rgb(233, 179, 1);">全年</a>
+        </h2>
+        <div class="chart"></div>
+        <div class="panel-footer"></div>
+      </div>
+      <div class="panel pieAlarm">
+        <h2>实时故障统计饼图 <a href="javacript:;" style="color: rgb(233, 179, 1);">当月</a><a href="javascript:;"
+            style="color: rgb(233, 179, 1);">全年</a></h2>
+        <div class="chart">图表</div>
+        <div class="panel-footer"></div>
+      </div>
+    </div>
+    <div class="column">
+      <!-- 地图模块 -->
+      <div class="map">
+        <div class="map1"></div>
+        <div class="map2"></div>
+        <div class="map3"></div>
+        <div class="chart"></div>
+      </div>
+    </div>
+    <div class="column">
+      <div class="panel bar">
+        <h2>实时故障预警表 (当月全线路)</h2>
+        <table>
+          <thead id="warningTableHead">
+            <tr>
+              <th>序号</th>
+              <th>车站</th>
+              <th>上下行</th>
+              <th>设备编号</th>
+              <th>故障内容</th>
+              <th>日期</th>
+            </tr>
+          </thead>
+          <tbody id="warningTable">
+          </tbody>
+        </table>
+        <div class="panel-footer"></div>
+      </div>
+      <div class="panel barWarning">
+        <h2>预警故障统计柱状图 <a href="javacript:;" style="color: rgb(233, 179, 1);">当月</a><a href="javascript:;"
+            style="color: rgb(233, 179, 1);">全年</a></h2>
+        <div class="chart">图表</div>
+        <div class="panel-footer"></div>
+      </div>
+      <div class="panel pieWarning">
+        <h2>预警故障统计饼图 <a href="javacript:;" style="color: rgb(233, 179, 1);">当月</a><a href="javascript:;"
+            style="color: rgb(233, 179, 1);">全年</a></h2>
+        <div class="chart">图表</div>
+        <div class="panel-footer"></div>
+      </div>
+    </div>
+  </section>
+  <script src="js/flexible.js"></script>
+  <script src="js/echarts.min.js"></script>
+  <!-- 先引入jquery -->
+  <script src="js/jquery.js"></script>
+  <!-- 必须先引入china.js 这个文件 因为中国地图需要 -->
+  <script src="js/china.js"></script>
+  
+  <script src="js/index.js"></script>
+</body>
+
+</html>
